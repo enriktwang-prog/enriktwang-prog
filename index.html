@@ -913,4 +913,60 @@
           const c = critify(base, 0.10 + heroFocus*0.06);
           heroFocus = 0;
           const r = dealDamage(enemy, c.amount);
-          log("YOU", `Attack for <b>${r.d
+          log("YOU", `Attack for <b>${r.dmg}</b>${r.blocked?` (blocked ${r.blocked})`:``}${c.crit?` <span class="tag">CRIT!</span>`:``}.`);
+          hero.en = clamp(hero.en + 2, 0, hero.enMax);
+        }
+
+        if(type === "skill"){
+          if(hero.en < 12) return;
+          hero.en -= 12;
+          const base = hero.sklBase + rnd(0,7);
+          const c = critify(base, 0.14 + heroFocus*0.08);
+          heroFocus = 0;
+          const r = dealDamage(enemy, c.amount);
+          log("YOU", `SKILL hits for <b>${r.dmg}</b>${r.blocked?` (blocked ${r.blocked})`:``}${c.crit?` <span class="tag">CRIT!</span>`:``}.`);
+        }
+
+        if(type === "heal"){
+          if(hero.en < 10) return;
+          hero.en -= 10;
+          const heal = rnd(hero.healBase-6, hero.healBase+6);
+          hero.hp = clamp(hero.hp + heal, 0, hero.hpMax);
+          hero.shield = clamp(hero.shield + 2, 0, 40);
+          log("YOU", `Heal <b>+${heal}</b> and gain a tiny shield.`);
+          heroFocus = 0;
+        }
+
+        if(type === "defend"){
+          hero.shield = clamp(hero.shield + hero.defBase, 0, 40);
+          hero.en = clamp(hero.en + 6, 0, hero.enMax);
+          heroFocus = clamp(heroFocus + 1, 0, 3);
+          log("YOU", `Defend: shield + energy. Focus rises (crit chance up).`);
+        }
+
+        // end-of-turn checks
+        if(enemy.hp <= 0){ endBattle(true); return; }
+
+        // hero regen small
+        hero.en = clamp(hero.en + 3, 0, hero.enMax);
+
+        heroTurn = false;
+        updateBattleUI();
+        enemyTurn();
+      }
+
+      $("actAttack").addEventListener("click", ()=>heroAction("attack"));
+      $("actSkill").addEventListener("click", ()=>heroAction("skill"));
+      $("actHeal").addEventListener("click", ()=>heroAction("heal"));
+      $("actDefend").addEventListener("click", ()=>heroAction("defend"));
+
+      // init hero + enemy preview
+      hero = buildHero();
+      enemy = buildEnemy(enemies[0]);
+      updateBattleUI();
+
+      showToast("Buttons ready ✅");
+    });
+  </script>
+</body>
+</html>
