@@ -3,171 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Enrik’s Fun Zone ⚽🎮🎨🎵</title>
+  <title>Enrik’s Comic Quest HQ ⚽🎮🎨🎵</title>
   <style>
     :root{
-      --bg:#0b1020;
-      --card:#121a33;
-      --card2:#0f1630;
-      --text:#eaf0ff;
-      --muted:#a9b6e6;
+      --bg:#070a17;
+      --card:#0f1533;
+      --card2:#0b1130;
+      --text:#e9efff;
+      --muted:#a6b4ea;
+      --line:rgba(255,255,255,.12);
       --accent:#7c5cff;
       --accent2:#00d4ff;
       --good:#55efc4;
       --warn:#ffeaa7;
-      --danger:#ff7675;
-      --shadow: 0 12px 40px rgba(0,0,0,.35);
-      --radius: 18px;
+      --bad:#ff7675;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --r:18px;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       background:
-        radial-gradient(900px 500px at 20% 10%, rgba(124,92,255,.25), transparent 60%),
-        radial-gradient(700px 420px at 85% 20%, rgba(0,212,255,.18), transparent 60%),
-        radial-gradient(900px 600px at 40% 100%, rgba(85,239,196,.12), transparent 60%),
+        radial-gradient(900px 520px at 15% 0%, rgba(124,92,255,.28), transparent 60%),
+        radial-gradient(760px 420px at 85% 10%, rgba(0,212,255,.18), transparent 60%),
+        radial-gradient(1000px 600px at 40% 110%, rgba(85,239,196,.12), transparent 60%),
         var(--bg);
       min-height:100vh;
       overflow-x:hidden;
     }
-
     header{
-      position:sticky; top:0;
+      position:sticky; top:0; z-index:10;
+      background: rgba(7,10,23,.70);
       backdrop-filter: blur(10px);
-      background: rgba(11,16,32,.65);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      z-index:5;
+      border-bottom:1px solid var(--line);
     }
-    .wrap{max-width:1100px; margin:0 auto; padding:18px 18px}
-    .hero{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:16px;
-      align-items:center;
+    .wrap{max-width:1100px; margin:0 auto; padding:18px;}
+    .top{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      flex-wrap:wrap;
     }
-    @media (max-width: 920px){
-      .hero{grid-template-columns:1fr; }
-    }
-
-    .badge{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding:8px 12px;
-      border:1px solid rgba(255,255,255,.12);
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      padding:10px 12px;
       border-radius:999px;
+      border:1px solid var(--line);
       background: rgba(255,255,255,.06);
-      box-shadow: 0 10px 30px rgba(0,0,0,.2);
-      font-weight:600;
-      color:var(--muted);
-      width:fit-content;
-    }
-    h1{
-      margin:10px 0 8px;
-      font-size: clamp(28px, 4vw, 44px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.22);
+      font-weight:1000;
       letter-spacing:.2px;
     }
-    .sub{
+    .chips{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+    .chip{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
       color:var(--muted);
-      line-height:1.5;
-      margin:0 0 14px;
-      font-size: 15.5px;
+      font-weight:900;
+      font-size:12.5px;
+      white-space:nowrap;
     }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:14px;
-      margin:18px 0 28px;
-    }
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px; margin-top:14px;}
     .card{
-      grid-column: span 6;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--r);
       box-shadow: var(--shadow);
       overflow:hidden;
-      position:relative;
     }
-    .card .in{ padding:16px 16px 14px; }
-    .card h2{ margin:0 0 8px; font-size:18px; }
-    .muted{ color:var(--muted); font-size:13.5px; line-height:1.45; margin:0; }
+    .in{padding:16px;}
+    h1{margin:0 0 8px; font-size: clamp(26px, 4vw, 44px);}
+    h2{margin:0 0 10px; font-size:18px;}
+    p{margin:0; color:var(--muted); line-height:1.5;}
+    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
 
-    .col-7{ grid-column: span 7; }
-    .col-5{ grid-column: span 5; }
-    .col-4{ grid-column: span 4; }
-    .col-8{ grid-column: span 8; }
-    .col-12{ grid-column: span 12; }
-    @media (max-width: 920px){
-      .card, .col-7,.col-5,.col-4,.col-8{ grid-column: span 12; }
-    }
-
-    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
     button{
-      appearance:none;
-      border:none;
-      border-radius: 12px;
-      padding:10px 12px;
-      background: rgba(124,92,255,.20);
+      appearance:none; border:none; cursor:pointer;
+      padding:11px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
       color:var(--text);
-      border:1px solid rgba(124,92,255,.35);
-      cursor:pointer;
-      font-weight:700;
+      font-weight:1000;
       letter-spacing:.2px;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      transition: transform .08s ease, background .18s ease, border-color .18s ease;
+      user-select:none;
     }
-    button:hover{ background: rgba(124,92,255,.28); border-color: rgba(124,92,255,.55); }
-    button:active{ transform: translateY(1px) scale(.99); }
-    .ghost{
-      background: rgba(0,212,255,.12);
-      border-color: rgba(0,212,255,.3);
-    }
-    .ghost:hover{ background: rgba(0,212,255,.18); border-color: rgba(0,212,255,.45); }
-    .good{
-      background: rgba(85,239,196,.14);
-      border-color: rgba(85,239,196,.35);
-    }
-    .good:hover{ background: rgba(85,239,196,.2); border-color: rgba(85,239,196,.55); }
+    button:hover{background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.26);}
+    button:active{transform: translateY(1px) scale(.99);}
+    button:disabled{opacity:.45; cursor:not-allowed;}
 
-    .meter{
-      margin-top:12px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 999px;
-      overflow:hidden;
-      height: 14px;
-      position:relative;
+    .btnA{background: rgba(124,92,255,.20); border-color: rgba(124,92,255,.40);}
+    .btnA:hover{background: rgba(124,92,255,.28); border-color: rgba(124,92,255,.55);}
+    .btnB{background: rgba(0,212,255,.14); border-color: rgba(0,212,255,.32);}
+    .btnB:hover{background: rgba(0,212,255,.20); border-color: rgba(0,212,255,.48);}
+    .btnG{background: rgba(85,239,196,.14); border-color: rgba(85,239,196,.32);}
+    .btnG:hover{background: rgba(85,239,196,.20); border-color: rgba(85,239,196,.48);}
+    .btnW{background: rgba(255,234,167,.12); border-color: rgba(255,234,167,.28);}
+    .btnW:hover{background: rgba(255,234,167,.18); border-color: rgba(255,234,167,.45);}
+    .btnR{background: rgba(255,118,117,.10); border-color: rgba(255,118,117,.22);}
+    .btnR:hover{background: rgba(255,118,117,.16); border-color: rgba(255,118,117,.38);}
+
+    .span12{grid-column: span 12;}
+    .span7{grid-column: span 7;}
+    .span5{grid-column: span 5;}
+    .span6{grid-column: span 6;}
+    @media (max-width: 920px){
+      .span7,.span5,.span6{grid-column: span 12;}
     }
-    .meter > .bar{
-      height:100%;
-      width:50%;
+
+    .meter{margin-top:12px; height:14px; border-radius:999px; border:1px solid var(--line);
+      background: rgba(255,255,255,.06); overflow:hidden;}
+    .bar{height:100%; width:40%; border-radius:999px;
       background: linear-gradient(90deg, var(--accent), var(--accent2), var(--good));
-      border-radius:999px;
-      transition: width .35s ease;
-    }
-    .meterlabel{
-      display:flex;
-      justify-content:space-between;
-      margin-top:8px;
-      font-size:12.5px;
-      color:var(--muted);
-      font-weight:700;
-    }
+      transition: width .25s ease;}
+    .meterline{display:flex; justify-content:space-between; margin-top:8px;
+      font-weight:900; color:var(--muted); font-size:12.5px;}
 
-    .pillset{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-    .pill{
-      padding:6px 10px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:999px;
-      font-size:12.5px;
-      color:var(--muted);
-      font-weight:700;
-    }
-
-    /* Comic panels */
+    /* Comic */
     .comic{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -176,245 +130,257 @@
     }
     @media (max-width: 920px){ .comic{grid-template-columns:1fr;} }
     .panel{
-      background: radial-gradient(220px 140px at 20% 20%, rgba(0,212,255,.18), rgba(255,255,255,.04));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.14);
       padding:12px;
-      min-height:130px;
+      min-height:120px;
       position:relative;
       overflow:hidden;
     }
-    .panel strong{
-      display:block;
-      margin-bottom:6px;
-      font-size:13.5px;
-      color:var(--text);
-      opacity:.9;
-    }
+    .panel b{display:block; margin-bottom:6px;}
     .speech{
-      background: rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 14px;
-      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      padding:10px;
       color:var(--text);
-      font-size: 13px;
       line-height:1.35;
-      box-shadow: 0 10px 25px rgba(0,0,0,.18);
+      min-height:54px;
     }
     .spark{
-      position:absolute;
-      inset:auto -40px -40px auto;
+      position:absolute; right:-40px; bottom:-40px;
       width:140px; height:140px;
       background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.55), transparent 60%);
       filter: blur(2px);
-      transform: rotate(12deg);
       opacity:.8;
       pointer-events:none;
     }
 
-    /* Canvas */
-    .canvaswrap{
-      margin-top:10px;
+    /* Drawing */
+    .canvasWrap{
       display:grid;
-      grid-template-columns: 1fr 210px;
+      grid-template-columns: 1fr 260px;
       gap:12px;
       align-items:start;
+      margin-top:12px;
     }
-    @media (max-width: 920px){ .canvaswrap{grid-template-columns:1fr;} }
+    @media (max-width: 920px){ .canvasWrap{grid-template-columns:1fr;} }
     canvas{
       width:100%;
       height:320px;
-      background: #0a0f22;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 16px;
+      background:#070b1d;
+      border-radius:16px;
+      border:1px solid var(--line);
       box-shadow: var(--shadow);
       display:block;
     }
     .tools{
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
       border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
       padding:12px;
     }
-    .tools label{
-      font-size:12.5px;
-      color:var(--muted);
-      font-weight:800;
+    label{
       display:block;
       margin-top:8px;
       margin-bottom:6px;
-    }
-    input[type="range"]{ width:100%; }
-    select, input[type="text"]{
-      width:100%;
-      padding:10px 10px;
-      border-radius: 12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      color:var(--text);
-      outline:none;
-    }
-    .note{
-      margin-top:10px;
       font-size:12.5px;
       color:var(--muted);
-      line-height:1.45;
+      font-weight:1000;
+    }
+    select, input[type="text"], input[type="range"]{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      color:var(--text);
+      padding:10px;
+      outline:none;
+      font-weight:900;
+    }
+    .hint{margin-top:10px; font-size:12.5px; color:var(--muted); line-height:1.45;}
+
+    /* Battle */
+    .battleGrid{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
+    @media (max-width: 920px){ .battleGrid{grid-template-columns:1fr;} }
+    .pane{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background: rgba(0,0,0,.14);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+      min-height: 230px;
+    }
+    .nameRow{display:flex; gap:10px; align-items:center;}
+    .avatar{
+      width:58px; height:58px; border-radius:16px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      font-size:30px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    }
+    .who{font-weight:1100;}
+    .sub{font-size:12.5px; color:var(--muted); font-weight:900; margin-top:2px;}
+    .bars{margin-top:10px;}
+    .barWrap{
+      height:12px; border-radius:999px; overflow:hidden;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      margin-top:6px;
+    }
+    .barFill{height:100%; width:50%; border-radius:999px; transition:width .25s ease;}
+    .hp{background: linear-gradient(90deg, var(--good), #9cffde);}
+    .en{background: linear-gradient(90deg, var(--accent2), #7cf7ff);}
+    .sh{background: linear-gradient(90deg, rgba(255,255,255,.35), rgba(255,255,255,.12));}
+    .barLine{display:flex; justify-content:space-between; margin-top:8px; font-size:12.5px; color:var(--muted); font-weight:1000;}
+    .log{
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      border-radius:16px;
+      padding:12px;
+      height: 220px;
+      overflow:auto;
+      font-size:13px;
+      line-height:1.35;
+      color: var(--text);
+    }
+    .tag{
+      display:inline-block;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight:1000;
+      font-size:11.5px;
+      color:var(--muted);
+      margin-right:6px;
     }
 
-    footer{
-      padding:30px 18px 26px;
-      color: rgba(234,240,255,.65);
-      text-align:center;
-      font-size:12.5px;
-    }
-
-    /* Floating stars */
-    .star{
+    /* Toast */
+    .toast{
       position:fixed;
-      width:10px;height:10px;
-      border-radius:50%;
-      background: rgba(255,255,255,.9);
-      box-shadow: 0 0 18px rgba(255,255,255,.55);
-      opacity:.85;
+      left:50%;
+      bottom:18px;
+      transform: translateX(-50%);
+      background: rgba(15,21,51,.90);
+      border:1px solid rgba(255,255,255,.16);
+      padding:10px 12px;
+      border-radius:999px;
+      box-shadow: 0 16px 50px rgba(0,0,0,.40);
+      color:var(--text);
+      font-weight:1100;
+      opacity:0;
       pointer-events:none;
-      animation: float 8s linear infinite;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index:999;
+      max-width: calc(100vw - 24px);
+      text-align:center;
     }
-    @keyframes float{
-      from{ transform: translateY(20px); }
-      to{ transform: translateY(-120vh); }
-    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(-4px);}
+
+    footer{padding:22px 18px; text-align:center; color: rgba(233,239,255,.65); font-size:12.5px;}
   </style>
 </head>
-
 <body>
   <header>
-    <div class="wrap hero">
-      <div>
-        <div class="badge">⚡ Enrik’s Fun Zone • Age 11 • Perfect Pitch 🎵</div>
-        <h1>⚽🎮🎨 Welcome, Enrik!</h1>
-        <p class="sub">
-          Soccer skills, Roblox adventures, comic drawing, and music power-up (drums + violin + guitar).
-          This page has mini buttons and a drawing board—have fun!
-        </p>
-        <div class="btnrow">
-          <button class="good" id="btnCheer">CHEER MODE 🙌</button>
-          <button class="ghost" id="btnPowerUp">POWER UP ⚡</button>
-          <button id="btnRandomQuest">RANDOM QUEST 🎯</button>
-        </div>
-        <div class="meter" aria-label="Power meter">
-          <div class="bar" id="powerBar"></div>
-        </div>
-        <div class="meterlabel">
-          <span>Power Level</span>
-          <span id="powerText">50%</span>
-        </div>
-        <div class="pillset" aria-label="Enrik likes">
-          <span class="pill">⚽ Soccer</span>
-          <span class="pill">🎮 Roblox</span>
-          <span class="pill">🖊️ Comics</span>
-          <span class="pill">🏴‍☠️ One Piece vibes</span>
-          <span class="pill">🐉 Dragon Ball vibes</span>
-          <span class="pill">🥁 Drums</span>
-          <span class="pill">🎻 Violin</span>
-          <span class="pill">🎸 Guitar</span>
-        </div>
-      </div>
-
-      <div class="card" style="grid-column: span 12;">
-        <div class="in">
-          <h2>🎯 Today’s Mission Board</h2>
-          <p class="muted" id="mission">Click “RANDOM QUEST” to get a mission!</p>
-        </div>
+    <div class="wrap top">
+      <div class="brand">⚡ Enrik’s Comic Quest HQ</div>
+      <div class="chips">
+        <div class="chip">⭐ Level: <span id="lvl">1</span></div>
+        <div class="chip">✨ XP: <span id="xp">0</span></div>
+        <div class="chip">💥 Power: <span id="powNum">40</span>%</div>
       </div>
     </div>
   </header>
 
   <main class="wrap">
     <section class="grid">
-      <article class="card col-7">
+      <!-- HERO -->
+      <div class="card span7">
         <div class="in">
-          <h2>🧠 Quick Quiz: Perfect Pitch Hero</h2>
-          <p class="muted">
-            Tap a note challenge. If you don’t have a piano nearby—just guess and laugh 😄
+          <h1>Welcome, Enrik! ⚽🎮🎨🎵</h1>
+          <p>
+            Create comics, draw characters, and start battles with “Battle Init”.
+            (Pirate/dragon vibes + soccer + music power — without using any copyrighted characters.)
           </p>
-          <div class="btnrow">
-            <button class="ghost" data-note="C">Note: C</button>
-            <button class="ghost" data-note="E">Note: E</button>
-            <button class="ghost" data-note="G">Note: G</button>
-            <button class="ghost" data-note="A">Note: A</button>
-          </div>
-          <p class="note" id="noteResult">Pick a note to see a fun message.</p>
-        </div>
-      </article>
 
-      <article class="card col-5">
-        <div class="in">
-          <h2>⚽ Soccer Combo Generator</h2>
-          <p class="muted">Press generate to get a new “combo move” name.</p>
-          <div class="btnrow">
-            <button class="good" id="btnCombo">GENERATE COMBO ⚽</button>
+          <div class="row">
+            <button class="btnG" id="btnMission">NEW MISSION 🎯</button>
+            <button class="btnA" id="btnPower">POWER UP ⚡</button>
+            <button class="btnB" id="btnSurprise">SURPRISE 🎁</button>
           </div>
-          <p class="note" id="comboText" style="font-size:14px; margin-top:10px;"></p>
-        </div>
-      </article>
 
-      <article class="card col-12">
+          <div class="meter"><div class="bar" id="powBar"></div></div>
+          <div class="meterline"><span>Power Meter</span><span id="powTxt">40%</span></div>
+
+          <div class="row" style="margin-top:14px">
+            <div class="chip">🏴‍☠️ Pirate vibes</div>
+            <div class="chip">🐉 Dragon vibes</div>
+            <div class="chip">🥁 Drums</div>
+            <div class="chip">🎻 Violin</div>
+            <div class="chip">🎸 Guitar</div>
+            <div class="chip">🎵 Perfect pitch</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION BOARD -->
+      <div class="card span5">
         <div class="in">
-          <h2>🖼️ Mini Comic Maker</h2>
-          <p class="muted">
-            Fill in 3 panels. Make it pirates vs dragons, soccer vs slime, or whatever you want.
-          </p>
+          <h2>📌 Mission Board</h2>
+          <p id="missionTxt">Tap <b>NEW MISSION</b> to begin.</p>
+          <div class="row">
+            <button id="btnDone">MISSION COMPLETE ✅</button>
+            <button class="btnR" id="btnReset">RESET 🔄</button>
+          </div>
+          <p class="hint">Tip: every click shows a toast at the bottom, so you know it worked.</p>
+        </div>
+      </div>
+
+      <!-- COMICS -->
+      <div class="card span12">
+        <div class="in">
+          <h2>🖼️ Comic Strip Studio</h2>
+          <p>Create a 3-panel comic. Write it yourself or auto-generate a story.</p>
 
           <div class="comic">
             <div class="panel">
               <div class="spark"></div>
-              <strong>Panel 1</strong>
-              <div class="speech" id="p1">“The hero enters the field…”</div>
+              <b>Panel 1</b>
+              <div class="speech" id="p1">“Kickoff… the hero steps onto the field.”</div>
             </div>
             <div class="panel">
               <div class="spark"></div>
-              <strong>Panel 2</strong>
-              <div class="speech" id="p2">“A wild boss appears!”</div>
+              <b>Panel 2</b>
+              <div class="speech" id="p2">“A mysterious rival appears with a power aura!”</div>
             </div>
             <div class="panel">
               <div class="spark"></div>
-              <strong>Panel 3</strong>
-              <div class="speech" id="p3">“POWER MOVE!”</div>
+              <b>Panel 3</b>
+              <div class="speech" id="p3">“Perfect Pitch POWER MOVE! Goal!!!”</div>
             </div>
           </div>
 
-          <div class="canvaswrap">
-            <div>
-              <label class="note" style="display:block; margin:8px 0 6px; font-weight:800;">
-                ✏️ Doodle Board (draw a character, a soccer play, or a Roblox avatar)
-              </label>
-              <canvas id="board" width="1200" height="700"></canvas>
-            </div>
+          <div class="row">
+            <button class="btnB" id="btnAutoComic">AUTO STORY 📚</button>
+            <button class="btnW" id="btnRandomCaption">RANDOM CAPTION ✍️</button>
+          </div>
+
+          <div class="canvasWrap">
+            <canvas id="board"></canvas>
 
             <div class="tools">
-              <label for="panelPick">Edit panel</label>
-              <select id="panelPick">
-                <option value="p1">Panel 1</option>
-                <option value="p2">Panel 2</option>
-                <option value="p3">Panel 3</option>
-              </select>
-
-              <label for="panelText">Panel text</label>
-              <input id="panelText" type="text" maxlength="80" placeholder="Type something epic..." />
-
-              <div class="btnrow" style="margin-top:10px">
-                <button class="good" id="btnSetPanel">SET TEXT ✅</button>
-                <button class="ghost" id="btnAutoStory">AUTO STORY 📚</button>
-              </div>
-
-              <hr style="border:none;border-top:1px solid rgba(255,255,255,.10); margin:12px 0">
+              <h2 style="margin-bottom:6px">Tools</h2>
 
               <label for="brush">Brush size</label>
-              <input id="brush" type="range" min="2" max="24" value="8" />
+              <input id="brush" type="range" min="2" max="26" value="8" />
 
-              <label for="color">Brush color</label>
+              <label for="color">Color</label>
               <select id="color">
-                <option value="#eaf0ff">Ice White</option>
+                <option value="#e9efff">Ice White</option>
                 <option value="#7c5cff">Power Purple</option>
                 <option value="#00d4ff">Neon Blue</option>
                 <option value="#55efc4">Mint Green</option>
@@ -422,250 +388,529 @@
                 <option value="#ff7675">Red Blast</option>
               </select>
 
-              <div class="btnrow" style="margin-top:10px">
+              <div class="row" style="margin-top:10px">
                 <button id="btnClear">CLEAR 🧼</button>
-                <button class="ghost" id="btnStamp">STAMP ⭐</button>
+                <button class="btnA" id="btnStamp">STAMP ⭐</button>
               </div>
 
-              <p class="note">
-                Tip: On a tablet, draw with your finger. On desktop, click & drag.
-              </p>
+              <label for="line1">Panel 1 text</label>
+              <input id="line1" type="text" maxlength="90" placeholder="Type your line..." />
+
+              <label for="line2">Panel 2 text</label>
+              <input id="line2" type="text" maxlength="90" placeholder="Type your line..." />
+
+              <label for="line3">Panel 3 text</label>
+              <input id="line3" type="text" maxlength="90" placeholder="Type your line..." />
+
+              <div class="row" style="margin-top:10px">
+                <button class="btnG" id="btnSetComic">SET PANELS ✅</button>
+              </div>
+
+              <p class="hint">Mouse: click+drag. Phone/iPad: draw with finger.</p>
             </div>
           </div>
         </div>
-      </article>
+      </div>
+
+      <!-- BATTLE INIT -->
+      <div class="card span12">
+        <div class="in">
+          <h2>⚔️ Battle Init Arena</h2>
+          <p>Pick a hero class and battle an enemy. Turn-based, kid-friendly, no gore.</p>
+
+          <div class="row">
+            <button class="btnG" id="btnStartBattle">START BATTLE INIT ▶</button>
+            <button id="btnNewEnemy">NEW ENEMY 🎲</button>
+          </div>
+
+          <div class="battleGrid" style="margin-top:12px">
+            <!-- HERO -->
+            <div class="pane">
+              <div class="nameRow">
+                <div class="avatar" id="heroIcon">🎵</div>
+                <div>
+                  <div class="who" id="heroName">Enrik</div>
+                  <div class="sub" id="heroClass">Sound Mage (Perfect Pitch)</div>
+                </div>
+              </div>
+
+              <div class="row" style="margin-top:10px">
+                <button class="btnB" id="pickStriker">⚽ Striker</button>
+                <button class="btnA" id="pickMage">🎵 Sound Mage</button>
+                <button class="btnG" id="pickBuilder">🎮 Builder</button>
+              </div>
+
+              <div class="bars">
+                <div class="barLine"><span>HP</span><span id="hHpTxt">100/100</span></div>
+                <div class="barWrap"><div class="barFill hp" id="hHpBar"></div></div>
+
+                <div class="barLine"><span>Energy</span><span id="hEnTxt">50/50</span></div>
+                <div class="barWrap"><div class="barFill en" id="hEnBar"></div></div>
+
+                <div class="barLine"><span>Shield</span><span id="hShTxt">0</span></div>
+                <div class="barWrap"><div class="barFill sh" id="hShBar"></div></div>
+              </div>
+
+              <div class="row" style="margin-top:14px">
+                <button class="btnB" id="actAttack">ATTACK ⚔️</button>
+                <button class="btnA" id="actSkill">SKILL ⚡</button>
+                <button class="btnG" id="actHeal">HEAL 🧪</button>
+                <button class="btnW" id="actDefend">DEFEND 🛡️</button>
+              </div>
+
+              <p class="hint" id="turnHint">Press START BATTLE INIT to begin.</p>
+            </div>
+
+            <!-- ENEMY + LOG -->
+            <div class="pane">
+              <div class="nameRow">
+                <div class="avatar" id="eIcon">🟣</div>
+                <div>
+                  <div class="who" id="eName">Slime Boss</div>
+                  <div class="sub" id="eType">Enemy</div>
+                </div>
+              </div>
+
+              <div class="bars">
+                <div class="barLine"><span>HP</span><span id="eHpTxt">90/90</span></div>
+                <div class="barWrap"><div class="barFill hp" id="eHpBar"></div></div>
+
+                <div class="barLine"><span>Energy</span><span id="eEnTxt">40/40</span></div>
+                <div class="barWrap"><div class="barFill en" id="eEnBar"></div></div>
+
+                <div class="barLine"><span>Shield</span><span id="eShTxt">0</span></div>
+                <div class="barWrap"><div class="barFill sh" id="eShBar"></div></div>
+              </div>
+
+              <div class="log" id="log"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
   </main>
 
-  <footer>
-    Made for Enrik ⚡ Keep creating, keep playing, and keep the beat! 🎵
-  </footer>
+  <footer>Made for Enrik ⚡ Create comics, play games, and keep the beat 🎵</footer>
+  <div class="toast" id="toast">Ready</div>
 
   <script>
-    // --- Power meter ---
-    let power = 50;
-    const powerBar = document.getElementById('powerBar');
-    const powerText = document.getElementById('powerText');
-    function setPower(val){
-      power = Math.max(0, Math.min(100, val));
-      powerBar.style.width = power + '%';
-      powerText.textContent = power + '%';
-    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const $ = (id)=>document.getElementById(id);
 
-    // --- Missions / Quests ---
-    const missionEl = document.getElementById('mission');
-    const quests = [
-      "⚽ Do 10 toe-taps on the ball. Then do a victory pose.",
-      "🎮 Design a Roblox obby idea: 3 obstacles + a boss room.",
-      "🎨 Draw a 3-panel comic: hero, problem, power-up ending.",
-      "🥁 Tap a rhythm: 1-2-3, pause, 1-2… then speed up!",
-      "🎻 Make up a tiny melody (5 notes). Try it on violin or guitar.",
-      "🏴‍☠️ Pirate vs Dragon: who wins? Write a 2-line story.",
-      "💥 Create a new 'energy attack' name for your character.",
-      "🤝 Teach someone one cool trick you learned this week."
-    ];
-    function randomItem(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+      // ----- Toast -----
+      const toast = $("toast");
+      function showToast(msg){
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(()=>toast.classList.remove("show"), 1200);
+      }
 
-    document.getElementById('btnRandomQuest').addEventListener('click', () => {
-      missionEl.textContent = randomItem(quests);
-      setPower(power + 6);
-      popStars(8);
-    });
+      // ----- Meta stats -----
+      let level = 1, xp = 0, power = 40;
+      function setPower(v){
+        power = Math.max(0, Math.min(100, v));
+        $("powBar").style.width = power + "%";
+        $("powTxt").textContent = power + "%";
+        $("powNum").textContent = power;
+      }
+      function addXP(n){
+        xp += n;
+        const need = 25 * level;
+        if(xp >= need){
+          xp -= need;
+          level++;
+          showToast("LEVEL UP! ⭐");
+        }
+        $("lvl").textContent = level;
+        $("xp").textContent = xp;
+      }
+      setPower(40);
+      $("lvl").textContent = level;
+      $("xp").textContent = xp;
 
-    // --- Cheer mode ---
-    document.getElementById('btnCheer').addEventListener('click', () => {
-      setPower(power + 10);
-      missionEl.textContent = "🙌 Crowd goes WILD! You just unlocked: 'Legendary Confidence +10'.";
-      popStars(14);
-    });
+      // ----- Mission board -----
+      const missions = [
+        "⚽ 20 toe taps + victory pose.",
+        "🎮 Roblox: design an obby with 3 obstacles + boss room.",
+        "🎨 Draw a 3-panel comic: hero → problem → win.",
+        "🥁 Make a beat: slow 8 counts, fast 8 counts.",
+        "🎸/🎻 Create a 5-note melody (perfect pitch bonus!).",
+        "🏴‍☠️ Pirate vibe: write a 2-line adventure.",
+        "🐉 Dragon vibe: invent a new energy attack name."
+      ];
+      function rand(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-    // --- Power up ---
-    document.getElementById('btnPowerUp').addEventListener('click', () => {
-      setPower(power + 18);
-      missionEl.textContent = "⚡ POWER UP! Combo ready: SPEED + SKILL + MUSIC BOOST.";
-      popStars(18);
-    });
-
-    // --- Note buttons (fun, not actual audio) ---
-    const noteResult = document.getElementById('noteResult');
-    document.querySelectorAll('button[data-note]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const n = btn.getAttribute('data-note');
-        const lines = [
-          `🎵 You chose ${n}. Perfect Pitch mode: ACTIVATED.`,
-          `🎶 ${n} is the secret key to a new melody.`,
-          `⚡ ${n} NOTE BLAST! Boss damage +${Math.floor(Math.random()*40)+10}.`,
-          `😄 If you can sing ${n} exactly, you’re basically a music wizard.`
-        ];
-        noteResult.textContent = randomItem(lines);
-        setPower(power + 4);
+      $("btnMission").addEventListener("click", () => {
+        $("missionTxt").textContent = rand(missions);
+        addXP(5);
+        setPower(power + 8);
+        showToast("New mission!");
       });
-    });
+      $("btnPower").addEventListener("click", () => {
+        setPower(power + 18);
+        addXP(3);
+        showToast("Power up!");
+      });
+      $("btnSurprise").addEventListener("click", () => {
+        const s = rand([
+          "🎁 Surprise: +1 Confidence Cape",
+          "🎁 Surprise: +1 Speed Boots",
+          "🎁 Surprise: +1 Music Aura",
+          "🎁 Surprise: +1 Comic Ink Pen",
+          "🎁 Surprise: +1 Builder Badge"
+        ]);
+        $("missionTxt").textContent = s;
+        addXP(4);
+        setPower(power + 6);
+        showToast("Surprise!");
+      });
+      $("btnDone").addEventListener("click", () => {
+        $("missionTxt").textContent = "✅ Mission complete! XP earned.";
+        addXP(10);
+        setPower(power + 6);
+        showToast("+10 XP!");
+      });
+      $("btnReset").addEventListener("click", () => {
+        level = 1; xp = 0; setPower(40);
+        $("lvl").textContent = level;
+        $("xp").textContent = xp;
+        $("missionTxt").innerHTML = 'Tap <b>NEW MISSION</b> to begin.';
+        showToast("Reset!");
+      });
 
-    // --- Soccer combo generator ---
-    const comboText = document.getElementById('comboText');
-    const comboA = ["Shadow", "Turbo", "Lightning", "Pirate", "Dragon", "Galaxy", "Neon", "Sky"];
-    const comboB = ["Step-over", "Cruyff", "Heel-flick", "Rainbow", "Spin", "Nutmeg", "Fake-shot", "Side-swipe"];
-    const comboC = ["Finish", "Pass", "Dash", "Strike", "Volley", "Sprint", "Curve", "Cannon"];
-    document.getElementById('btnCombo').addEventListener('click', () => {
-      const move = `⚽ ${randomItem(comboA)} ${randomItem(comboB)} → ${randomItem(comboC)}!`;
-      comboText.textContent = move;
-      setPower(power + 7);
-      popStars(10);
-    });
+      // ----- Comic maker -----
+      $("btnAutoComic").addEventListener("click", () => {
+        const a = [
+          "“Kickoff… the hero arrives with pirate energy!”",
+          "“In Roblox City, the field turns into a boss arena!”",
+          "“A drumbeat starts… and the ball begins to glow!”"
+        ];
+        const b = [
+          "“A dragon rival blocks the shot with an aura shield!”",
+          "“The mysterious defender uses the Ultimate Tackle!”",
+          "“A portal opens—instant obstacle course chaos!”"
+        ];
+        const c = [
+          "“Perfect Pitch POWER! The melody unlocks the winning move!”",
+          "“ENERGY STRIKE! Goal + fireworks + victory dance!”",
+          "“TEAM COMBO! Assist → volley → WIN!”"
+        ];
+        $("p1").textContent = rand(a);
+        $("p2").textContent = rand(b);
+        $("p3").textContent = rand(c);
+        addXP(5);
+        showToast("Story generated!");
+      });
 
-    // --- Comic panel editor ---
-    const panelPick = document.getElementById('panelPick');
-    const panelText = document.getElementById('panelText');
-    document.getElementById('btnSetPanel').addEventListener('click', () => {
-      const id = panelPick.value;
-      const text = panelText.value.trim();
-      if(!text){ panelText.focus(); return; }
-      document.getElementById(id).textContent = text;
-      panelText.value = "";
-      setPower(power + 5);
-      popStars(6);
-    });
-
-    document.getElementById('btnAutoStory').addEventListener('click', () => {
-      const p1 = [
-        "“Kickoff! The hero dribbles through the misty arena…”",
-        "“A pirate crew arrives… but the match is still on!”",
-        "“In Roblox City, a portal opens onto the soccer field…”"
+      const captions = [
+        "“No way… that’s my ball!”",
+        "“Activate: Turbo Dribble!”",
+        "“I trained for this!”",
+        "“Boss incoming… stay calm!”",
+        "“Perfect pitch… CHARGE!”",
+        "“We win as a team!”"
       ];
-      const p2 = [
-        "“A dragon boss appears and steals the ball!”",
-        "“The villain drops a giant banana peel trap!”",
-        "“The final defender uses the Ultimate Block!”"
+      $("btnRandomCaption").addEventListener("click", () => {
+        const pick = rand([$("p1"), $("p2"), $("p3")]);
+        pick.textContent = rand(captions);
+        addXP(2);
+        showToast("Caption swapped!");
+      });
+
+      $("btnSetComic").addEventListener("click", () => {
+        const l1 = $("line1").value.trim();
+        const l2 = $("line2").value.trim();
+        const l3 = $("line3").value.trim();
+        if(l1) $("p1").textContent = l1;
+        if(l2) $("p2").textContent = l2;
+        if(l3) $("p3").textContent = l3;
+        addXP(4);
+        showToast("Comic updated!");
+      });
+
+      // ----- Drawing canvas (robust on all screens) -----
+      const canvas = $("board");
+      const ctx = canvas.getContext("2d");
+      function fitCanvas(){
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = Math.round(rect.width * dpr);
+        canvas.height = Math.round(rect.height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+      }
+      fitCanvas();
+      window.addEventListener("resize", fitCanvas);
+
+      let drawing = false;
+      let last = {x:0, y:0};
+
+      function pos(e){
+        const rect = canvas.getBoundingClientRect();
+        const cx = e.touches ? e.touches[0].clientX : e.clientX;
+        const cy = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: cx - rect.left, y: cy - rect.top };
+      }
+      function start(e){ drawing = true; last = pos(e); e.preventDefault(); }
+      function move(e){
+        if(!drawing) return;
+        const p = pos(e);
+        ctx.strokeStyle = $("color").value;
+        ctx.lineWidth = Number($("brush").value);
+        ctx.beginPath();
+        ctx.moveTo(last.x, last.y);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+        last = p;
+        e.preventDefault();
+      }
+      function end(){ if(!drawing) return; drawing = false; addXP(1); }
+
+      canvas.addEventListener("mousedown", start);
+      canvas.addEventListener("mousemove", move);
+      window.addEventListener("mouseup", end);
+      canvas.addEventListener("touchstart", start, {passive:false});
+      canvas.addEventListener("touchmove", move, {passive:false});
+      window.addEventListener("touchend", end);
+
+      $("btnClear").addEventListener("click", () => {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        setPower(power - 3);
+        showToast("Cleared!");
+      });
+
+      function drawStar(cx, cy, spikes, outerR, innerR, fill){
+        let rot = Math.PI / 2 * 3, x = cx, y = cy;
+        const step = Math.PI / spikes;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - outerR);
+        for(let i=0;i<spikes;i++){
+          x = cx + Math.cos(rot) * outerR;
+          y = cy + Math.sin(rot) * outerR;
+          ctx.lineTo(x,y);
+          rot += step;
+          x = cx + Math.cos(rot) * innerR;
+          y = cy + Math.sin(rot) * innerR;
+          ctx.lineTo(x,y);
+          rot += step;
+        }
+        ctx.closePath();
+        ctx.fillStyle = fill;
+        ctx.globalAlpha = 0.85;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+      $("btnStamp").addEventListener("click", () => {
+        const rect = canvas.getBoundingClientRect();
+        const x = 30 + Math.random()*(rect.width-60);
+        const y = 30 + Math.random()*(rect.height-60);
+        drawStar(x,y,5,18,8,$("color").value);
+        addXP(2);
+        showToast("Stamped!");
+      });
+
+      // ======================
+      // Battle Init mini-game
+      // ======================
+      const logEl = $("log");
+      function log(tag, msg){
+        const line = document.createElement("div");
+        line.innerHTML = `<span class="tag">${tag}</span>${msg}`;
+        logEl.appendChild(line);
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+      function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+      function rnd(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+      function chance(p){ return Math.random() < p; }
+
+      const enemies = [
+        {name:"Slime Boss", icon:"🟣", hp:90, atk:11, skl:15},
+        {name:"Robo-Guard", icon:"🤖", hp:120, atk:13, skl:17},
+        {name:"Dragon Drone", icon:"🐉", hp:150, atk:15, skl:20},
       ];
-      const p3 = [
-        "“Perfect Pitch Power! The hero plays a melody and the ball glows!”",
-        "“ENERGY STRIKE! Goal + fireworks + victory dance!”",
-        "“TEAM COMBO! Assist → Volley → WIN!”"
-      ];
-      document.getElementById('p1').textContent = randomItem(p1);
-      document.getElementById('p2').textContent = randomItem(p2);
-      document.getElementById('p3').textContent = randomItem(p3);
-      setPower(power + 12);
-      popStars(16);
-    });
 
-    // --- Drawing board ---
-    const canvas = document.getElementById('board');
-    const ctx = canvas.getContext('2d');
-    const brush = document.getElementById('brush');
-    const color = document.getElementById('color');
-    let drawing = false;
-    let last = {x:0,y:0};
+      let hero = null, enemy = null;
+      let heroTurn = true;
+      let battleOn = false;
+      let heroFocus = 0;
 
-    // crisp lines
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.strokeStyle = color.value;
-    ctx.lineWidth = Number(brush.value);
-
-    function getPos(e){
-      const rect = canvas.getBoundingClientRect();
-      const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
-      const clientY = (e.touches ? e.touches[0].clientY : e.clientY);
-      return {
-        x: (clientX - rect.left) * (canvas.width / rect.width),
-        y: (clientY - rect.top) * (canvas.height / rect.height)
+      const heroClasses = {
+        striker: {name:"Striker", icon:"⚽", atkMul:1.15, sklMul:1.00, defMul:1.00},
+        mage:    {name:"Sound Mage (Perfect Pitch)", icon:"🎵", atkMul:1.00, sklMul:1.28, defMul:1.00},
+        builder: {name:"Builder", icon:"🎮", atkMul:1.00, sklMul:1.10, defMul:1.18},
       };
-    }
+      let currentClass = "mage";
 
-    function start(e){
-      drawing = true;
-      last = getPos(e);
-      e.preventDefault();
-    }
-    function move(e){
-      if(!drawing) return;
-      const p = getPos(e);
-      ctx.strokeStyle = color.value;
-      ctx.lineWidth = Number(brush.value);
-      ctx.beginPath();
-      ctx.moveTo(last.x, last.y);
-      ctx.lineTo(p.x, p.y);
-      ctx.stroke();
-      last = p;
-      e.preventDefault();
-    }
-    function end(){
-      if(!drawing) return;
-      drawing = false;
-      setPower(power + 1);
-    }
-
-    canvas.addEventListener('mousedown', start);
-    canvas.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', end);
-
-    canvas.addEventListener('touchstart', start, {passive:false});
-    canvas.addEventListener('touchmove', move, {passive:false});
-    window.addEventListener('touchend', end);
-
-    document.getElementById('btnClear').addEventListener('click', () => {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      setPower(power - 4);
-    });
-
-    document.getElementById('btnStamp').addEventListener('click', () => {
-      // stamp a star near top-left-ish randomly
-      const x = 120 + Math.random()* (canvas.width-240);
-      const y = 100 + Math.random()* (canvas.height-200);
-      drawStar(x,y, 5, 34, 14, color.value);
-      setPower(power + 3);
-      popStars(5);
-    });
-
-    function drawStar(cx, cy, spikes, outerRadius, innerRadius, fill){
-      let rot = Math.PI / 2 * 3;
-      let x = cx;
-      let y = cy;
-      const step = Math.PI / spikes;
-
-      ctx.beginPath();
-      ctx.moveTo(cx, cy - outerRadius);
-      for(let i=0;i<spikes;i++){
-        x = cx + Math.cos(rot) * outerRadius;
-        y = cy + Math.sin(rot) * outerRadius;
-        ctx.lineTo(x,y);
-        rot += step;
-
-        x = cx + Math.cos(rot) * innerRadius;
-        y = cy + Math.sin(rot) * innerRadius;
-        ctx.lineTo(x,y);
-        rot += step;
+      function buildHero(){
+        const c = heroClasses[currentClass];
+        const hpMax = 100 + (level-1)*10;
+        const enMax = 50 + (level-1)*3;
+        return {
+          name:"Enrik",
+          cls:c.name,
+          icon:c.icon,
+          hpMax, hp:hpMax,
+          enMax, en:enMax,
+          shield:0,
+          atkBase: Math.round((12 + (level-1)*2) * c.atkMul),
+          sklBase: Math.round((20 + (level-1)*3) * c.sklMul),
+          defBase: Math.round(10 * c.defMul),
+          healBase: 18 + (level-1)*2,
+        };
       }
-      ctx.lineTo(cx, cy - outerRadius);
-      ctx.closePath();
-      ctx.fillStyle = fill;
-      ctx.globalAlpha = 0.85;
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    }
-
-    // --- Floating stars effect ---
-    function popStars(count){
-      for(let i=0;i<count;i++){
-        const s = document.createElement('div');
-        s.className = 'star';
-        const size = 6 + Math.random()*10;
-        s.style.width = size + 'px';
-        s.style.height = size + 'px';
-        s.style.left = (Math.random()*100) + 'vw';
-        s.style.bottom = (-20 - Math.random()*40) + 'px';
-        s.style.opacity = (0.25 + Math.random()*0.7).toFixed(2);
-        s.style.animationDuration = (6 + Math.random()*5).toFixed(2) + 's';
-        document.body.appendChild(s);
-        setTimeout(() => s.remove(), 12000);
+      function buildEnemy(e){
+        // slight scaling with level
+        const hpMax = e.hp + (level-1)*12;
+        const enMax = 40 + (level-1)*4;
+        return { ...e, hpMax, hp:hpMax, enMax, en:enMax, shield:0 };
       }
-    }
 
-    // start with a few stars
-    popStars(6);
-    setPower(50);
-  </script>
-</body>
-</html>
+      function updateBattleUI(){
+        $("heroIcon").textContent = hero.icon;
+        $("heroName").textContent = hero.name;
+        $("heroClass").textContent = hero.cls;
+
+        $("eIcon").textContent = enemy.icon;
+        $("eName").textContent = enemy.name;
+
+        const hhp = (hero.hp/hero.hpMax)*100;
+        const hen = (hero.en/hero.enMax)*100;
+        const ehp = (enemy.hp/enemy.hpMax)*100;
+        const een = (enemy.en/enemy.enMax)*100;
+
+        $("hHpBar").style.width = hhp + "%";
+        $("hEnBar").style.width = hen + "%";
+        $("eHpBar").style.width = ehp + "%";
+        $("eEnBar").style.width = een + "%";
+
+        $("hShBar").style.width = clamp(hero.shield,0,40)/40*100 + "%";
+        $("eShBar").style.width = clamp(enemy.shield,0,40)/40*100 + "%";
+
+        $("hHpTxt").textContent = `${hero.hp}/${hero.hpMax}`;
+        $("hEnTxt").textContent = `${hero.en}/${hero.enMax}`;
+        $("hShTxt").textContent = `${hero.shield}`;
+
+        $("eHpTxt").textContent = `${enemy.hp}/${enemy.hpMax}`;
+        $("eEnTxt").textContent = `${enemy.en}/${enemy.enMax}`;
+        $("eShTxt").textContent = `${enemy.shield}`;
+
+        const canAct = battleOn && heroTurn && hero.hp > 0 && enemy.hp > 0;
+        $("actAttack").disabled = !canAct;
+        $("actSkill").disabled  = !canAct || hero.en < 12;
+        $("actHeal").disabled   = !canAct || hero.en < 10;
+        $("actDefend").disabled = !canAct;
+
+        $("turnHint").textContent =
+          !battleOn ? "Press START BATTLE INIT to begin."
+          : (heroTurn ? "Your turn. Pick an action." : "Enemy turn...");
+      }
+
+      function dealDamage(target, raw){
+        const blocked = Math.min(target.shield, raw);
+        target.shield -= blocked;
+        const dmg = raw - blocked;
+        target.hp = clamp(target.hp - dmg, 0, target.hpMax);
+        return { dmg, blocked };
+      }
+      function critify(base, critChance){
+        if(chance(critChance)){
+          return { amount: Math.round(base*1.6), crit:true };
+        }
+        return { amount: base, crit:false };
+      }
+
+      function endBattle(win){
+        battleOn = false;
+        if(win){
+          log("WIN", `Victory! You gained <b>+12 XP</b> and <b>+10 power</b>.`);
+          addXP(12);
+          setPower(power + 10);
+          showToast("WIN! 🏆");
+        } else {
+          log("LOSE", "Defeat 😅 Try again! (+3 XP consolation)");
+          addXP(3);
+          showToast("Defeat 😅");
+        }
+        updateBattleUI();
+      }
+
+      function enemyTurn(){
+        heroTurn = false;
+        updateBattleUI();
+
+        setTimeout(() => {
+          if(!battleOn) return;
+          // Simple AI: use skill if energy, heal if low, else attack
+          if(enemy.hp < enemy.hpMax*0.35 && enemy.en >= 10 && chance(0.55)){
+            enemy.en -= 10;
+            const heal = rnd(12, 20);
+            enemy.hp = clamp(enemy.hp + heal, 0, enemy.hpMax);
+            log("ENEMY", `${enemy.name} heals <b>+${heal}</b>.`);
+          } else if(enemy.en >= 12 && chance(0.45)){
+            enemy.en -= 12;
+            const base = enemy.skl + rnd(0,6);
+            const c = critify(base, 0.10);
+            const r = dealDamage(hero, c.amount);
+            log("ENEMY", `${enemy.name} uses SKILL for <b>${r.dmg}</b>${r.blocked?` (blocked ${r.blocked})`:``}${c.crit?` <span class="tag">CRIT!</span>`:``}.`);
+          } else {
+            const base = enemy.atk + rnd(-2,3);
+            const c = critify(base, 0.08);
+            const r = dealDamage(hero, c.amount);
+            log("ENEMY", `${enemy.name} attacks for <b>${r.dmg}</b>${r.blocked?` (blocked ${r.blocked})`:``}${c.crit?` <span class="tag">CRIT!</span>`:``}.`);
+          }
+
+          // regen a bit
+          enemy.en = clamp(enemy.en + 4, 0, enemy.enMax);
+
+          if(hero.hp <= 0) { endBattle(false); return; }
+          heroTurn = true;
+          updateBattleUI();
+        }, 650);
+      }
+
+      function startBattle(){
+        logEl.innerHTML = "";
+        hero = buildHero();
+        enemy = buildEnemy(rand(enemies));
+        heroTurn = true;
+        battleOn = true;
+        heroFocus = 0;
+
+        log("INIT", `Battle started! <b>${hero.cls}</b> vs <b>${enemy.name}</b>.`);
+        updateBattleUI();
+        showToast("Battle Init!");
+      }
+
+      $("btnStartBattle").addEventListener("click", () => startBattle());
+      $("btnNewEnemy").addEventListener("click", () => {
+        if(!enemy) enemy = buildEnemy(rand(enemies));
+        else enemy = buildEnemy(rand(enemies));
+        $("eIcon").textContent = enemy.icon;
+        $("eName").textContent = enemy.name;
+        showToast("Enemy changed!");
+        updateBattleUI();
+      });
+
+      function pickClass(key){
+        currentClass = key;
+        hero = buildHero();
+        $("heroIcon").textContent = hero.icon;
+        $("heroClass").textContent = hero.cls;
+        showToast("Class selected!");
+        updateBattleUI();
+      }
+      $("pickStriker").addEventListener("click", ()=>pickClass("striker"));
+      $("pickMage").addEventListener("click", ()=>pickClass("mage"));
+      $("pickBuilder").addEventListener("click", ()=>pickClass("builder"));
+
+      function heroAction(type){
+        if(!battleOn || !heroTurn) return;
+
+        if(type === "attack"){
+          const base = hero.atkBase + rnd(-2,4);
+          const c = critify(base, 0.10 + heroFocus*0.06);
+          heroFocus = 0;
+          const r = dealDamage(enemy, c.amount);
+          log("YOU", `Attack for <b>${r.d
