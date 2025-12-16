@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enrik’s Fun Zone ⚽🎮🎨🎵</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --card2:#0f1630;
+      --text:#eaf0ff;
+      --muted:#a9b6e6;
+      --accent:#7c5cff;
+      --accent2:#00d4ff;
+      --good:#55efc4;
+      --warn:#ffeaa7;
+      --danger:#ff7675;
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(700px 420px at 85% 20%, rgba(0,212,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 40% 100%, rgba(85,239,196,.12), transparent 60%),
+        var(--bg);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    header{
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,.65);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      z-index:5;
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:18px 18px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      align-items:center;
+    }
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr; }
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+      font-weight:600;
+      color:var(--muted);
+      width:fit-content;
+    }
+    h1{
+      margin:10px 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing:.2px;
+    }
+    .sub{
+      color:var(--muted);
+      line-height:1.5;
+      margin:0 0 14px;
+      font-size: 15.5px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin:18px 0 28px;
+    }
+    .card{
+      grid-column: span 6;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card .in{ padding:16px 16px 14px; }
+    .card h2{ margin:0 0 8px; font-size:18px; }
+    .muted{ color:var(--muted); font-size:13.5px; line-height:1.45; margin:0; }
+
+    .col-7{ grid-column: span 7; }
+    .col-5{ grid-column: span 5; }
+    .col-4{ grid-column: span 4; }
+    .col-8{ grid-column: span 8; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 920px){
+      .card, .col-7,.col-5,.col-4,.col-8{ grid-column: span 12; }
+    }
+
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    button{
+      appearance:none;
+      border:none;
+      border-radius: 12px;
+      padding:10px 12px;
+      background: rgba(124,92,255,.20);
+      color:var(--text);
+      border:1px solid rgba(124,92,255,.35);
+      cursor:pointer;
+      font-weight:700;
+      letter-spacing:.2px;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    button:hover{ background: rgba(124,92,255,.28); border-color: rgba(124,92,255,.55); }
+    button:active{ transform: translateY(1px) scale(.99); }
+    .ghost{
+      background: rgba(0,212,255,.12);
+      border-color: rgba(0,212,255,.3);
+    }
+    .ghost:hover{ background: rgba(0,212,255,.18); border-color: rgba(0,212,255,.45); }
+    .good{
+      background: rgba(85,239,196,.14);
+      border-color: rgba(85,239,196,.35);
+    }
+    .good:hover{ background: rgba(85,239,196,.2); border-color: rgba(85,239,196,.55); }
+
+    .meter{
+      margin-top:12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      overflow:hidden;
+      height: 14px;
+      position:relative;
+    }
+    .meter > .bar{
+      height:100%;
+      width:50%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--good));
+      border-radius:999px;
+      transition: width .35s ease;
+    }
+    .meterlabel{
+      display:flex;
+      justify-content:space-between;
+      margin-top:8px;
+      font-size:12.5px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .pillset{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      padding:6px 10px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      font-size:12.5px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    /* Comic panels */
+    .comic{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 920px){ .comic{grid-template-columns:1fr;} }
+    .panel{
+      background: radial-gradient(220px 140px at 20% 20%, rgba(0,212,255,.18), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding:12px;
+      min-height:130px;
+      position:relative;
+      overflow:hidden;
+    }
+    .panel strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:13.5px;
+      color:var(--text);
+      opacity:.9;
+    }
+    .speech{
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding:10px 10px;
+      color:var(--text);
+      font-size: 13px;
+      line-height:1.35;
+      box-shadow: 0 10px 25px rgba(0,0,0,.18);
+    }
+    .spark{
+      position:absolute;
+      inset:auto -40px -40px auto;
+      width:140px; height:140px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.55), transparent 60%);
+      filter: blur(2px);
+      transform: rotate(12deg);
+      opacity:.8;
+      pointer-events:none;
+    }
+
+    /* Canvas */
+    .canvaswrap{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns: 1fr 210px;
+      gap:12px;
+      align-items:start;
+    }
+    @media (max-width: 920px){ .canvaswrap{grid-template-columns:1fr;} }
+    canvas{
+      width:100%;
+      height:320px;
+      background: #0a0f22;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      display:block;
+    }
+    .tools{
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+    .tools label{
+      font-size:12.5px;
+      color:var(--muted);
+      font-weight:800;
+      display:block;
+      margin-top:8px;
+      margin-bottom:6px;
+    }
+    input[type="range"]{ width:100%; }
+    select, input[type="text"]{
+      width:100%;
+      padding:10px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+    }
+    .note{
+      margin-top:10px;
+      font-size:12.5px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    footer{
+      padding:30px 18px 26px;
+      color: rgba(234,240,255,.65);
+      text-align:center;
+      font-size:12.5px;
+    }
+
+    /* Floating stars */
+    .star{
+      position:fixed;
+      width:10px;height:10px;
+      border-radius:50%;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 0 18px rgba(255,255,255,.55);
+      opacity:.85;
+      pointer-events:none;
+      animation: float 8s linear infinite;
+    }
+    @keyframes float{
+      from{ transform: translateY(20px); }
+      to{ transform: translateY(-120vh); }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap hero">
+      <div>
+        <div class="badge">⚡ Enrik’s Fun Zone • Age 11 • Perfect Pitch 🎵</div>
+        <h1>⚽🎮🎨 Welcome, Enrik!</h1>
+        <p class="sub">
+          Soccer skills, Roblox adventures, comic drawing, and music power-up (drums + violin + guitar).
+          This page has mini buttons and a drawing board—have fun!
+        </p>
+        <div class="btnrow">
+          <button class="good" id="btnCheer">CHEER MODE 🙌</button>
+          <button class="ghost" id="btnPowerUp">POWER UP ⚡</button>
+          <button id="btnRandomQuest">RANDOM QUEST 🎯</button>
+        </div>
+        <div class="meter" aria-label="Power meter">
+          <div class="bar" id="powerBar"></div>
+        </div>
+        <div class="meterlabel">
+          <span>Power Level</span>
+          <span id="powerText">50%</span>
+        </div>
+        <div class="pillset" aria-label="Enrik likes">
+          <span class="pill">⚽ Soccer</span>
+          <span class="pill">🎮 Roblox</span>
+          <span class="pill">🖊️ Comics</span>
+          <span class="pill">🏴‍☠️ One Piece vibes</span>
+          <span class="pill">🐉 Dragon Ball vibes</span>
+          <span class="pill">🥁 Drums</span>
+          <span class="pill">🎻 Violin</span>
+          <span class="pill">🎸 Guitar</span>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column: span 12;">
+        <div class="in">
+          <h2>🎯 Today’s Mission Board</h2>
+          <p class="muted" id="mission">Click “RANDOM QUEST” to get a mission!</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid">
+      <article class="card col-7">
+        <div class="in">
+          <h2>🧠 Quick Quiz: Perfect Pitch Hero</h2>
+          <p class="muted">
+            Tap a note challenge. If you don’t have a piano nearby—just guess and laugh 😄
+          </p>
+          <div class="btnrow">
+            <button class="ghost" data-note="C">Note: C</button>
+            <button class="ghost" data-note="E">Note: E</button>
+            <button class="ghost" data-note="G">Note: G</button>
+            <button class="ghost" data-note="A">Note: A</button>
+          </div>
+          <p class="note" id="noteResult">Pick a note to see a fun message.</p>
+        </div>
+      </article>
+
+      <article class="card col-5">
+        <div class="in">
+          <h2>⚽ Soccer Combo Generator</h2>
+          <p class="muted">Press generate to get a new “combo move” name.</p>
+          <div class="btnrow">
+            <button class="good" id="btnCombo">GENERATE COMBO ⚽</button>
+          </div>
+          <p class="note" id="comboText" style="font-size:14px; margin-top:10px;"></p>
+        </div>
+      </article>
+
+      <article class="card col-12">
+        <div class="in">
+          <h2>🖼️ Mini Comic Maker</h2>
+          <p class="muted">
+            Fill in 3 panels. Make it pirates vs dragons, soccer vs slime, or whatever you want.
+          </p>
+
+          <div class="comic">
+            <div class="panel">
+              <div class="spark"></div>
+              <strong>Panel 1</strong>
+              <div class="speech" id="p1">“The hero enters the field…”</div>
+            </div>
+            <div class="panel">
+              <div class="spark"></div>
+              <strong>Panel 2</strong>
+              <div class="speech" id="p2">“A wild boss appears!”</div>
+            </div>
+            <div class="panel">
+              <div class="spark"></div>
+              <strong>Panel 3</strong>
+              <div class="speech" id="p3">“POWER MOVE!”</div>
+            </div>
+          </div>
+
+          <div class="canvaswrap">
+            <div>
+              <label class="note" style="display:block; margin:8px 0 6px; font-weight:800;">
+                ✏️ Doodle Board (draw a character, a soccer play, or a Roblox avatar)
+              </label>
+              <canvas id="board" width="1200" height="700"></canvas>
+            </div>
+
+            <div class="tools">
+              <label for="panelPick">Edit panel</label>
+              <select id="panelPick">
+                <option value="p1">Panel 1</option>
+                <option value="p2">Panel 2</option>
+                <option value="p3">Panel 3</option>
+              </select>
+
+              <label for="panelText">Panel text</label>
+              <input id="panelText" type="text" maxlength="80" placeholder="Type something epic..." />
+
+              <div class="btnrow" style="margin-top:10px">
+                <button class="good" id="btnSetPanel">SET TEXT ✅</button>
+                <button class="ghost" id="btnAutoStory">AUTO STORY 📚</button>
+              </div>
+
+              <hr style="border:none;border-top:1px solid rgba(255,255,255,.10); margin:12px 0">
+
+              <label for="brush">Brush size</label>
+              <input id="brush" type="range" min="2" max="24" value="8" />
+
+              <label for="color">Brush color</label>
+              <select id="color">
+                <option value="#eaf0ff">Ice White</option>
+                <option value="#7c5cff">Power Purple</option>
+                <option value="#00d4ff">Neon Blue</option>
+                <option value="#55efc4">Mint Green</option>
+                <option value="#ffeaa7">Golden</option>
+                <option value="#ff7675">Red Blast</option>
+              </select>
+
+              <div class="btnrow" style="margin-top:10px">
+                <button id="btnClear">CLEAR 🧼</button>
+                <button class="ghost" id="btnStamp">STAMP ⭐</button>
+              </div>
+
+              <p class="note">
+                Tip: On a tablet, draw with your finger. On desktop, click & drag.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    Made for Enrik ⚡ Keep creating, keep playing, and keep the beat! 🎵
+  </footer>
+
+  <script>
+    // --- Power meter ---
+    let power = 50;
+    const powerBar = document.getElementById('powerBar');
+    const powerText = document.getElementById('powerText');
+    function setPower(val){
+      power = Math.max(0, Math.min(100, val));
+      powerBar.style.width = power + '%';
+      powerText.textContent = power + '%';
+    }
+
+    // --- Missions / Quests ---
+    const missionEl = document.getElementById('mission');
+    const quests = [
+      "⚽ Do 10 toe-taps on the ball. Then do a victory pose.",
+      "🎮 Design a Roblox obby idea: 3 obstacles + a boss room.",
+      "🎨 Draw a 3-panel comic: hero, problem, power-up ending.",
+      "🥁 Tap a rhythm: 1-2-3, pause, 1-2… then speed up!",
+      "🎻 Make up a tiny melody (5 notes). Try it on violin or guitar.",
+      "🏴‍☠️ Pirate vs Dragon: who wins? Write a 2-line story.",
+      "💥 Create a new 'energy attack' name for your character.",
+      "🤝 Teach someone one cool trick you learned this week."
+    ];
+    function randomItem(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    document.getElementById('btnRandomQuest').addEventListener('click', () => {
+      missionEl.textContent = randomItem(quests);
+      setPower(power + 6);
+      popStars(8);
+    });
+
+    // --- Cheer mode ---
+    document.getElementById('btnCheer').addEventListener('click', () => {
+      setPower(power + 10);
+      missionEl.textContent = "🙌 Crowd goes WILD! You just unlocked: 'Legendary Confidence +10'.";
+      popStars(14);
+    });
+
+    // --- Power up ---
+    document.getElementById('btnPowerUp').addEventListener('click', () => {
+      setPower(power + 18);
+      missionEl.textContent = "⚡ POWER UP! Combo ready: SPEED + SKILL + MUSIC BOOST.";
+      popStars(18);
+    });
+
+    // --- Note buttons (fun, not actual audio) ---
+    const noteResult = document.getElementById('noteResult');
+    document.querySelectorAll('button[data-note]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const n = btn.getAttribute('data-note');
+        const lines = [
+          `🎵 You chose ${n}. Perfect Pitch mode: ACTIVATED.`,
+          `🎶 ${n} is the secret key to a new melody.`,
+          `⚡ ${n} NOTE BLAST! Boss damage +${Math.floor(Math.random()*40)+10}.`,
+          `😄 If you can sing ${n} exactly, you’re basically a music wizard.`
+        ];
+        noteResult.textContent = randomItem(lines);
+        setPower(power + 4);
+      });
+    });
+
+    // --- Soccer combo generator ---
+    const comboText = document.getElementById('comboText');
+    const comboA = ["Shadow", "Turbo", "Lightning", "Pirate", "Dragon", "Galaxy", "Neon", "Sky"];
+    const comboB = ["Step-over", "Cruyff", "Heel-flick", "Rainbow", "Spin", "Nutmeg", "Fake-shot", "Side-swipe"];
+    const comboC = ["Finish", "Pass", "Dash", "Strike", "Volley", "Sprint", "Curve", "Cannon"];
+    document.getElementById('btnCombo').addEventListener('click', () => {
+      const move = `⚽ ${randomItem(comboA)} ${randomItem(comboB)} → ${randomItem(comboC)}!`;
+      comboText.textContent = move;
+      setPower(power + 7);
+      popStars(10);
+    });
+
+    // --- Comic panel editor ---
+    const panelPick = document.getElementById('panelPick');
+    const panelText = document.getElementById('panelText');
+    document.getElementById('btnSetPanel').addEventListener('click', () => {
+      const id = panelPick.value;
+      const text = panelText.value.trim();
+      if(!text){ panelText.focus(); return; }
+      document.getElementById(id).textContent = text;
+      panelText.value = "";
+      setPower(power + 5);
+      popStars(6);
+    });
+
+    document.getElementById('btnAutoStory').addEventListener('click', () => {
+      const p1 = [
+        "“Kickoff! The hero dribbles through the misty arena…”",
+        "“A pirate crew arrives… but the match is still on!”",
+        "“In Roblox City, a portal opens onto the soccer field…”"
+      ];
+      const p2 = [
+        "“A dragon boss appears and steals the ball!”",
+        "“The villain drops a giant banana peel trap!”",
+        "“The final defender uses the Ultimate Block!”"
+      ];
+      const p3 = [
+        "“Perfect Pitch Power! The hero plays a melody and the ball glows!”",
+        "“ENERGY STRIKE! Goal + fireworks + victory dance!”",
+        "“TEAM COMBO! Assist → Volley → WIN!”"
+      ];
+      document.getElementById('p1').textContent = randomItem(p1);
+      document.getElementById('p2').textContent = randomItem(p2);
+      document.getElementById('p3').textContent = randomItem(p3);
+      setPower(power + 12);
+      popStars(16);
+    });
+
+    // --- Drawing board ---
+    const canvas = document.getElementById('board');
+    const ctx = canvas.getContext('2d');
+    const brush = document.getElementById('brush');
+    const color = document.getElementById('color');
+    let drawing = false;
+    let last = {x:0,y:0};
+
+    // crisp lines
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = color.value;
+    ctx.lineWidth = Number(brush.value);
+
+    function getPos(e){
+      const rect = canvas.getBoundingClientRect();
+      const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
+      const clientY = (e.touches ? e.touches[0].clientY : e.clientY);
+      return {
+        x: (clientX - rect.left) * (canvas.width / rect.width),
+        y: (clientY - rect.top) * (canvas.height / rect.height)
+      };
+    }
+
+    function start(e){
+      drawing = true;
+      last = getPos(e);
+      e.preventDefault();
+    }
+    function move(e){
+      if(!drawing) return;
+      const p = getPos(e);
+      ctx.strokeStyle = color.value;
+      ctx.lineWidth = Number(brush.value);
+      ctx.beginPath();
+      ctx.moveTo(last.x, last.y);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+      last = p;
+      e.preventDefault();
+    }
+    function end(){
+      if(!drawing) return;
+      drawing = false;
+      setPower(power + 1);
+    }
+
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+
+    canvas.addEventListener('touchstart', start, {passive:false});
+    canvas.addEventListener('touchmove', move, {passive:false});
+    window.addEventListener('touchend', end);
+
+    document.getElementById('btnClear').addEventListener('click', () => {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      setPower(power - 4);
+    });
+
+    document.getElementById('btnStamp').addEventListener('click', () => {
+      // stamp a star near top-left-ish randomly
+      const x = 120 + Math.random()* (canvas.width-240);
+      const y = 100 + Math.random()* (canvas.height-200);
+      drawStar(x,y, 5, 34, 14, color.value);
+      setPower(power + 3);
+      popStars(5);
+    });
+
+    function drawStar(cx, cy, spikes, outerRadius, innerRadius, fill){
+      let rot = Math.PI / 2 * 3;
+      let x = cx;
+      let y = cy;
+      const step = Math.PI / spikes;
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - outerRadius);
+      for(let i=0;i<spikes;i++){
+        x = cx + Math.cos(rot) * outerRadius;
+        y = cy + Math.sin(rot) * outerRadius;
+        ctx.lineTo(x,y);
+        rot += step;
+
+        x = cx + Math.cos(rot) * innerRadius;
+        y = cy + Math.sin(rot) * innerRadius;
+        ctx.lineTo(x,y);
+        rot += step;
+      }
+      ctx.lineTo(cx, cy - outerRadius);
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.globalAlpha = 0.85;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    // --- Floating stars effect ---
+    function popStars(count){
+      for(let i=0;i<count;i++){
+        const s = document.createElement('div');
+        s.className = 'star';
+        const size = 6 + Math.random()*10;
+        s.style.width = size + 'px';
+        s.style.height = size + 'px';
+        s.style.left = (Math.random()*100) + 'vw';
+        s.style.bottom = (-20 - Math.random()*40) + 'px';
+        s.style.opacity = (0.25 + Math.random()*0.7).toFixed(2);
+        s.style.animationDuration = (6 + Math.random()*5).toFixed(2) + 's';
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 12000);
+      }
+    }
+
+    // start with a few stars
+    popStars(6);
+    setPower(50);
+  </script>
+</body>
+</html>
